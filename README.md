@@ -1,2 +1,9 @@
-# tp-grupo-18
- Trabajo práctico final de la amteria "Entorno de Programación"
+# Trabajo práctico final - **GRUPO 18 - COMISIÓN 3**
+Trabajo práctico final de la materia "Entorno de Programación"
+---
+## **Integrantes:**
+- Lucía Masciángelo
+- Giuliano Crenna
+- Rocío Hachen
+
+## **Documentación:**
