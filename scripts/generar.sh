@@ -47,7 +47,23 @@ function descargar_desde_internet {
 
                 sleep 1
             done
+
+        if [[ -f "imagenes_comprimidas.zip" ]]; then
+            rm imagenes_comprimidas.zip
+        fi
+
+        zip -r imagenes_comprimidas.zip imagenes
         
+        archivo="imagenes_comprimidas.zip"
+        checksum=$(md5sum "$archivo" | awk '{ print $1 }')
+
+        echo "$checksum" > "imagenes_comprimidas.md5"
+
+        for archivo in $(ls imagenes)
+        do
+            rm "imagenes/$archivo"
+        done
+
         cd ..
 
     else
