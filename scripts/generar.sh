@@ -36,6 +36,10 @@ function descargar_desde_internet {
             exit 0
         fi
 
+        if ! [ -e "imagenes" ]; then
+            mkdir imagenes
+        fi
+
         for (( i=0; i < $1; i++ ))
             do
                 LINEA_ALEATORIA=$(shuf -n "1" "$CSV_PATH")
