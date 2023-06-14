@@ -5,22 +5,31 @@
 #usuario de lo contrario se procede a descomprimir.
 
 #Verificación de argumentos
-TIPO_ARCHIVO="\.[zip]*[rar]*[gzip]*[bzip2]*[xz]*$"
-TIPO="${1##*.}"
-echo $TIPO
-[[ $# -ne 2 ]] && echo "Debe pasar 2 argumentos." && exit 1 || [[ ! -f $1 ]] && echo "Debe pasar un archivo" && exit 1 || [[ $1  =~ $TIPO_ARCHIVO ]] && echo "Buen archivo" 
+EXT_VALIDA="\.[zip]*[rar]*[gzip]*[bzip2]*[xz]*$"
+#EXTENSION="${1##*.}"
+
+[[ $# -ne 2 ]] && echo "Debe pasar 2 argumentos." && exit 1 || #Verifica que haya dos argumentos.
+[[ ! -f $1 ]] || [[ ! $1 =~ $EXT_VALIDA ]] &&  echo "Debe pasar un archivo comprimido (.zip)" && exit 1 || #Verifica que el primer argumento sea un archivo válido.
+[[ ! -f $2 ]] && echo "Debe pasar un archivo que contenga el checksum." && exit 1  #Verifica que el segundo argumento sea un archivo.
 
 #Verificación de Checksum
-CHECKSUM=`md5sum ${1} | awk '{ print $1 }'`
-[[ $CHECKSUM != $2 ]] && echo "La suma de verificación no coincide, puede haber un problema con el archivo seleccionado." && exit 1
+CHECKSUM=`md5sum $1 | awk '{ print $1 }'`
+[[ $CHECKSUM != $(cat  $2) ]] && echo "La suma de verificación no coincide, puede haber un problema con el archivo seleccionado." && exit 1
 
 #Acá nuestros argumentos ya fueron verificados y está todo correcto.
 
-if [[ $TIPO ==  "zip" ]]
-then
-	unzip $1
-else
-	$TIPO -d $1
+if ! [[ -d imagenes/ ]]
+	then
+		mkdir "imagenes"
 fi
+ 
+unzip -d imagenes/ $1
+
+#if [[ $TIPO ==  "zip" ]]
+#then
+#	unzip $1
+#else
+#	$TIPO -d $1
+#fi
 
 exit 0
