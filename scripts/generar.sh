@@ -83,10 +83,12 @@ function descargar_desde_internet {
 
         echo "$checksum" > "imagenes_comprimidas.md5"
 
-        # for archivo in $(ls imagenes)
-        # do
-        #     rm "imagenes/$archivo"
-        # done
+        for archivo in $(ls imagenes)
+        do
+            rm "imagenes/$archivo"
+        done
+
+        rm -rf "imagenes"
 
         cd ..
 

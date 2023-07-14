@@ -8,23 +8,22 @@ ARGS="-gravity center -resize 512x512+0+0 -extent 512x512 salida.jpg"
 # Con esta expresión regular puedo determinar si la primera letra de la palabra es mayuscula y las demás minúscula
 REGEX="[A-Z][a-z]{1,}"
 
+if ! [ -e "$PATH_IMAGENES/imagenes_covertidas" ]; then
+        mkdir "$PATH_IMAGENES/imagenes_covertidas"
+fi
+
 function procesar {
     # Itero sobre las imágenes disponibles en el directorio imagenes
-    for imagen in $(ls $PATH_IMAGENES)
+    for imagen in $(ls ./imagenes)
     do
-        if ! [ -e "$PATH_IMAGENES/imagenes_covertidas" ]; then
-                mkdir "$PATH_IMAGENES/imagenes_covertidas"
-        fi
-
         # Extraigo la extensión del archivo
         EXTENSION=$(echo "$imagen" | cut -d '.' -f 2)
-
         # Tomo el nombre y el apellido por separado
         SIN_EXTENSION=$(echo "$imagen" | cut -d '.' -f 1)
         NOMBRE=$(echo "$SIN_EXTENSION" | cut -d '_' -f 1)
         APELLIDO=$(echo "$SIN_EXTENSION" | cut -d '_' -f 2)
-
         # Compruebo si el archivo es una imagen.
+
         if [ $EXTENSION == "jpg" ]
         then
             # Compruebo si el nombre es válido
@@ -34,7 +33,7 @@ function procesar {
                 if [ $(echo $APELLIDO | egrep $REGEX) == $APELLIDO ]
                 then
                     echo "Procesando imagen: $imagen"
-                    convert "$PATH_IMAGENES/$imagen" -gravity center -resize 512x512+0+0 -extent 512x512 "$PATH_IMAGENES/imagenes_covertidas/conv_$imagen"
+                    convert "imagenes/$imagen" -gravity center -resize 512x512+0+0 -extent 512x512 "./imagenes/imagenes_covertidas/conv_$imagen"
                 fi
             fi
         fi

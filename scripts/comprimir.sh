@@ -50,6 +50,10 @@ function comprimir {
 	# Comprimir los archivos generados en un archivo llamado Archivos_comprimidos.zip
 	zip archivos_comprimidos Nombre_imagenes Nombre_imagenes_validas Nombres_terminados_en_a
 
+	rm Nombre_imagenes 
+	rm Nombre_imagenes_validas 
+	rm Nombres_terminados_en_a
+	 
 }
 
 comprimir
