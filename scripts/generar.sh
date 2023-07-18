@@ -1,16 +1,17 @@
 #!/usr/bin/bash
 
 URL="https://source.unsplash.com/random/900%C3%97700/?person"
-CSV_URL="https://raw.githubusercontent.com/fernandezpablo85/name_suggestions/master/assets/dict.csv"
+CSV_URL="https://raw.githubusercontent.com/adalessandro/EdP-2023-TP-Final/main/dict.csv"
 CSV_PATH="csv/dict.csv"
 IMAGENES_PATH="imagenes/"
+
 
 function descargar_desde_internet {
     # Compruebo con un regex si es válido el argumento
     if ! [[ $1 =~ ^[0-9]+$ ]]
     then
         echo "La opción debe ser un número"
-        exit 1
+        return 1
     fi
 
     if [[ $# -eq 1 ]]; then
@@ -37,7 +38,7 @@ function descargar_desde_internet {
             # Llamo de nuevo a la misma función con el archivo ya descargado
             descargar_desde_internet $1
             
-            exit 0
+            return 0
         fi
 
         # Si no existe el directorio imágenes lo creo
@@ -90,10 +91,10 @@ function descargar_desde_internet {
 
         rm -rf "imagenes"
 
-        cd ..
-
     else
         echo "Cantidad de argumentos inválidas: $#"
-        exit 1
+        return 1
     fi
+    
+    return 0
 }

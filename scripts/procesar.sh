@@ -8,11 +8,18 @@ ARGS="-gravity center -resize 512x512+0+0 -extent 512x512 salida.jpg"
 # Con esta expresión regular puedo determinar si la primera letra de la palabra es mayuscula y las demás minúscula
 REGEX="[A-Z][a-z]{1,}"
 
-if ! [ -e "$PATH_IMAGENES/imagenes_covertidas" ]; then
-        mkdir "$PATH_IMAGENES/imagenes_covertidas"
-fi
 
 function procesar {
+    PATH_IMAGENES="imagenes/"
+    if ! [[ -e $PATH_IMAGENES ]]
+    then
+        read -p "No se encontraron imagenes. Quiza deba descomprimirlas primero."
+        return 1
+    elif ! [ -e "$PATH_IMAGENES/imagenes_convertidas" ]
+    then
+        mkdir "$PATH_IMAGENES/imagenes_convertidas"
+    fi
+
     # Itero sobre las imágenes disponibles en el directorio imagenes
     for imagen in $(ls ./imagenes)
     do
@@ -33,7 +40,7 @@ function procesar {
                 if [ $(echo $APELLIDO | egrep $REGEX) == $APELLIDO ]
                 then
                     echo "Procesando imagen: $imagen"
-                    convert "imagenes/$imagen" -gravity center -resize 512x512+0+0 -extent 512x512 "./imagenes/imagenes_covertidas/conv_$imagen"
+                    convert "imagenes/$imagen" -gravity center -resize 512x512+0+0 -extent 512x512 "./imagenes/imagenes_convertidas/$imagen"
                 fi
             fi
         fi
