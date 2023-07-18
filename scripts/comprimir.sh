@@ -12,7 +12,7 @@
 
 function comprimir {
 
-	IMAGENES=$(ls imagenes/)
+	IMAGENES=$(ls --ignore='imagenes_convertidas' imagenes/)
 	IMAGENES_VALIDAS=$(ls imagenes/imagenes_convertidas/)
 
 	#Verificamos si existen los directorios necesitados.
