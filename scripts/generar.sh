@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-URL="https://source.unsplash.com/random/900%C3%97700/?person"
+URL="https://thispersondoesnotexist.com/"
 CSV_URL="https://raw.githubusercontent.com/adalessandro/EdP-2023-TP-Final/main/dict.csv"
 CSV_PATH="csv/dict.csv"
 IMAGENES_PATH="imagenes/"

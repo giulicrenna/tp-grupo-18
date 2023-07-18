@@ -10,12 +10,12 @@ Trabajo práctico final de la materia "Entorno de Programación"
 Para construír la imágen de docker correr el siguiente comando en la ruta del
 Dockerfile.
 ```
-docker build -t tp .
+sudo docker build -t tp .
 ```
 
 Para correr la imagen ejecutar donde **contenedor** es el nombre que llevará el container y **tp** es la imagen creada.
 ```
-docker run -it --name contenedor tp
+sudo docker run -it -v ".../tp-grupo-18:/tp" tp
 ```
 
 Para copiar en el host el archivo de imágenes comprimidas.
