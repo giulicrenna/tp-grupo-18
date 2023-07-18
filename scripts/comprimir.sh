@@ -31,6 +31,7 @@ function comprimir {
 	then
 		rm Nombre_imagenes
 	fi
+	
 	echo $IMAGENES
 	# Itero sobre todos los nombres de todas las imagenes y las guardo en un archivo
 	# No hace falta crear el archivo xq >> o crea automaticamente

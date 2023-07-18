@@ -14,14 +14,16 @@ function descargar_desde_internet {
         return 1
     fi
 
+    # Verifico que se haya pasado un solo argumento 
     if [[ $# -eq 1 ]]; then
+
         # En el caso de que el archivo personas.csv no exista lo descargo
         if ! [[ -f $CSV_PATH ]]
         then 
             echo "El archivo personas.csv no existe. \nDescargando archivo"
             
             # Si no existe el directorio donde voy a guardar el CSV lo creo
-            if ! [ -e "csv" ]; then
+            if ! [ -d "csv" ]; then
                 mkdir csv
             fi
 
@@ -42,7 +44,7 @@ function descargar_desde_internet {
         fi
 
         # Si no existe el directorio imágenes lo creo
-        if ! [ -e "imagenes" ]; then
+        if ! [ -d "imagenes" ]; then
             mkdir imagenes
         fi
 
@@ -55,7 +57,7 @@ function descargar_desde_internet {
                 # Corto el CSV así obtengo el primer elemento de una fila aleatoria
                 NOMBRE_IMAGEN=$(echo "$LINEA_ALEATORIA" | cut -d ',' -f 1)
 
-                # Tomo el nombre y apellido de la string 
+                # Tomo el nombre y apellido del string 
                 NOMBRE="$(echo "${NOMBRE_IMAGEN}" | cut -d " " -f 1)"
                 APELLIDO="$(echo "${NOMBRE_IMAGEN}" | cut -d " " -f 2)"
 
@@ -92,7 +94,7 @@ function descargar_desde_internet {
         rm -rf "imagenes"
 
     else
-        echo "Cantidad de argumentos inválidas: $#"
+        echo "Cantidad de argumentos inválidas: $#. Se debe ingresar 1 solo argumento."
         return 1
     fi
     
