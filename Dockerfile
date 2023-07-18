@@ -7,6 +7,7 @@ FROM debian:latest
 # instalo zip
 RUN apt-get update && apt-get install -y bash
 RUN apt-get install wget -y
+RUN apt-get install imagemagick
 RUN apt-get install zip -y
 
 
