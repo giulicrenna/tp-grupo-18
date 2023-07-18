@@ -53,6 +53,8 @@ function comprimir {
 	rm Nombre_imagenes 
 	rm Nombre_imagenes_validas 
 	rm Nombres_terminados_en_a
+	
+	zip -r imagenes_comprimidas_final.zip imagenes/imagenes_convertidas/
 	 
 }
 
