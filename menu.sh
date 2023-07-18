@@ -11,6 +11,7 @@ printf "\t1- Generar imagen aleatoria\n"
 printf "\t2- Descomprimir imagenes generadas\n"
 printf "\t3- Procesar imagenes\n"
 printf "\t4- Comprimir imagenes\n"
+printf "\t0- Salir\n"
 printf "Opcion (Solo numeros): "
 
 read OPCION
@@ -103,8 +104,8 @@ printf "\t1- Generar imagen aleatoria\n"
 printf "\t2- Descomprimir imagenes generadas\n"
 printf "\t3- Procesar imagenes\n"
 printf "\t4- Comprimir imagenes\n"
+printf "\t0- Salir\n"
 printf "Opcion (Solo numeros): "
-echo "Ingrese otra opción"
 read OPCION
 done
 
