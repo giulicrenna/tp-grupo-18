@@ -35,7 +35,7 @@ function comprimir {
 
 	echo $IMAGENES
 	# Itero sobre todos los nombres de todas las imagenes y las guardo en un archivo
-	# No hace falta crear el archivo xq >> o crea automaticamente
+	# No hace falta crear el archivo xq >> lo crea automaticamente
 	for IMAGEN in $IMAGENES
 	do
 		# Usamos basename para que se guarden los nombres de las imagenes sin la extension
@@ -44,17 +44,15 @@ function comprimir {
 	done
 
 	# Entiendase por nombre valido todos los nombres donde la primer letra este en mayuscula y el resto en minuscula, antes y despues del _ 
+	# En el dir IMAGENES_VALIDAS ya estan todas las imagenes con nombres validos 
 	for IMAGEN in $IMAGENES_VALIDAS
 	do
 		NOMBRE_SIN_EXTENSION=$(basename $IMAGEN .jpg)
-		if [[ $NOMBRE_SIN_EXTENSION =~ (^[A-Z][a-z]+_[A-Z][a-z]+$) ]]
-		then
-			echo $NOMBRE_SIN_EXTENSION >> Nombre_imagenes_validas
-		fi
+		echo $NOMBRE_SIN_EXTENSION >> Nombre_imagenes_validas
 	done 
 
 	# Para conseguir los nombres que terminen con a 
-	CONTADOR=0 #Para llevar la cuenta de los nombres que terminan con a
+	CONTADOR=0    #Para llevar la cuenta de los nombres que terminan con a
 	for IMAGEN in $IMAGENES
 	do
 		if [[ $IMAGEN =~ (a.jpg$) ]]
@@ -62,6 +60,7 @@ function comprimir {
 			let CONTADOR++
 		fi
 	done 
+
 	# No hace falta eliminarlo antes porque con > lo sobreescribe
 	echo $CONTADOR > Nombres_terminados_en_a
 
