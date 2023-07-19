@@ -61,8 +61,8 @@ function descargar_desde_internet {
                 NOMBRE="$(echo "${NOMBRE_IMAGEN}" | cut -d " " -f 1)"
                 APELLIDO="$(echo "${NOMBRE_IMAGEN}" | cut -d " " -f 2)"
 
-                # Uso ^ así puedo guardar el archivo con el nombre en el formato correcto
-                NOMBRE_IMAGEN="$(echo "${NOMBRE^} ${APELLIDO^}" | tr ' ' '_').jpg"
+                # Transformo el " " en un "_" 
+                NOMBRE_IMAGEN="$(echo "${NOMBRE} ${APELLIDO}" | tr ' ' '_').jpg"
 
                 wget -O "imagenes/$NOMBRE_IMAGEN" $URL 
 
