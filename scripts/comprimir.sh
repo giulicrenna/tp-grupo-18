@@ -32,21 +32,24 @@ function comprimir {
 		rm Nombre_imagenes
 	fi
 	
+
 	echo $IMAGENES
 	# Itero sobre todos los nombres de todas las imagenes y las guardo en un archivo
 	# No hace falta crear el archivo xq >> o crea automaticamente
 	for IMAGEN in $IMAGENES
 	do
-		echo $IMAGEN >> Nombre_imagenes 
+		# Usamos basename para que se guarden los nombres de las imagenes sin la extension
+		NOMBRE_SIN_EXTENSION=$(basename $IMAGEN .jpg)
+		echo "$NOMBRE_SIN_EXTENSION" >> Nombre_imagenes
 	done
 
 	# Entiendase por nombre valido todos los nombres donde la primer letra este en mayuscula y el resto en minuscula, antes y despues del _ 
 	for IMAGEN in $IMAGENES_VALIDAS
 	do
-
-		if [[ $IMAGEN =~ (^[A-Z][a-z]+_[A-Z][a-z]+.jpg) ]]
+		NOMBRE_SIN_EXTENSION=$(basename $IMAGEN .jpg)
+		if [[ $NOMBRE_SIN_EXTENSION =~ (^[A-Z][a-z]+_[A-Z][a-z]+$) ]]
 		then
-			echo $IMAGEN >> Nombre_imagenes_validas
+			echo $NOMBRE_SIN_EXTENSION >> Nombre_imagenes_validas
 		fi
 	done 
 
@@ -77,6 +80,5 @@ function comprimir {
 
 	echo "Comprimiendo imágenes" #Agregamos las imágenes al archivo comprimido
 	zip -r archivos_comprimidos imagenes
-	
 	 
 }
