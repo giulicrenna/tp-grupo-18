@@ -53,7 +53,25 @@ function descargar_desde_internet {
         # Si no existe el directorio imágenes lo creo
         if ! [ -d $IMAGENES_PATH ]; then
             mkdir $IMAGENES_PATH
+        else
+            read -p "Ya existen imagenes generadas. Presione 1 para generar mas imagenes, 0 para cancelar." OPCION
+            if ! [[ $OPCION =~ ^[0-9]+$ ]]
+            then
+                echo "La opcion debe ser un numero. No se generaran imagenes nuevas."
+                return 1
+            elif [[ $OPCION == 0 ]]
+            then
+                echo "No se generaran imagenes nuevas."
+                return 2
+            elif [[ $OPCION == 1 ]]
+            then
+                echo "Se agregaran imagenes nuevas a la carpeta imagenes."
+            else
+                echo "La opcion no ha sido valida. No se generaran imagenes nuevas."
+                return 2
+            fi
         fi
+        
 
         # Itero en función de la cantidad de personas que el usuario quiere que genere
         for (( i=0; i < $1; i++ ))

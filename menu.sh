@@ -45,11 +45,11 @@ case $OPCION in
 
         descargar_desde_internet $CANT
 
-        if [[ $? -ne 0 ]]
+        if [[ $? -eq 0 ]]
             then 
-                echo "Se han encontrado errores, verifique los mensajes e intentelo de nuevo. Presione cualquier tecla para continuar..."
-            else
-            echo "Imagenes descargadas y comprimidas. Presione cualquier tecla para continuar..."
+                echo "Imagenes descargadas y comprimidas. Presione cualquier tecla para continuar..."
+        else
+            echo "Se han encontrado errores, verifique los mensajes e intentelo de nuevo. Presione cualquier tecla para continuar..."
         fi
         
         read
