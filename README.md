@@ -19,19 +19,14 @@ Todo el trabajo debe ser realizado bajo control de versiones, con participación
 de todos los integrantes y debe ejecutarse dentro de un contenedor.
 
 ## **Modo de uso**
-Es necesario que se agregue al usuario al grupo docker.
-```
-sudo usermod -aG docker <usuario>
-```
 Para construír la imágen de docker correr el siguiente comando en la ruta del
 Dockerfile.
 ```
-docker build -t tp .
+sudo docker build -t tp .
 ```
-
 Para correr la imagen ejecutar donde **contenedor** es el nombre que llevará el container y **tp** es la imagen creada.
 ```
-docker run -it tp
+sudo docker run -it -v ~/archivos:/tp/archivos tp
 ```
 Cuando se ejecute el **contenedor**, podrá visualizar un menú (**menu.sh**) que contendrá las siguientes opciones:
   - 1- Generar imagen aleatoria
