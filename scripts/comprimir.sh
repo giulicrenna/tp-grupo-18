@@ -53,14 +53,7 @@ function comprimir {
 		echo $NOMBRE_SIN_EXTENSION >> Nombre_imagenes_validas
 	done 
 	
-	#En caso de que no encuentre imagenes válidas, no intenta comprimir el archivo. 
-	#if [[ VALIDAS -ne 0 ]]
-	#then 
-	#	zip archivos_comprimidos Nombres_imagenes_validas
-	#	rm Nombres_imagenes_validas
-	#else
-	#	echo "No se encontraron imágenes con nombres válidos."
-	#fi
+	
 
 	# Para conseguir los nombres que terminen con a 
 	CONTADOR=0    #Para llevar la cuenta de los nombres que terminan con a
@@ -78,14 +71,23 @@ function comprimir {
 	#Nos aseguramos de que no haya un archivo previo para que no se mezclen los datos.
 	if [[ -f "archivos_comprimidos.zip" ]]; then
             rm archivos_comprimidos.zip
-        fi 
+    fi 
 
+	
 	# Comprimir los archivos generados en un archivo llamado Archivos_comprimidos.zip
-	zip archivos_comprimidos Nombres_imagenes_validas Nombre_imagenes Nombres_terminados_en_a
+	zip archivos_comprimidos Nombre_imagenes Nombres_terminados_en_a
+
+	#En caso de que no encuentre imagenes válidas, no intenta comprimir el archivo. 
+	if [[ VALIDAS -ne 0 ]]
+	then 
+		zip archivos_comprimidos Nombre_imagenes_validas
+	else
+		echo "No se encontraron imágenes con nombres válidos."
+	fi
 
 	#Quitamos los archivos ya comprimidos.
 	rm Nombre_imagenes 
-	rm Nombre_imagenes_validas 
+	rm Nombre_imagenes_validas
 	rm Nombres_terminados_en_a
 
 	echo "Comprimiendo imágenes" #Agregamos las imágenes al archivo comprimido
