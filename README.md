@@ -15,7 +15,7 @@ docker build -t tp .
 
 Para correr la imagen ejecutar donde **contenedor** es el nombre que llevará el container y **tp** es la imagen creada.
 ```
-docker run -it -v /home/giuli/archivos:/tp/archivos tp
+docker run -it -v ~/archivos:/tp/archivos tp
 ```
 
 ## **Documentación:**
