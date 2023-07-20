@@ -9,7 +9,7 @@ function descargar_desde_internet {
     # Compruebo con un regex si es válido el argumento
     if ! [[ $1 =~ ^[0-9]+$ ]]
     then
-        echo "La opción debe ser un número"
+        echo "La opcion debe ser un numero"
         return 1
     fi
 
@@ -76,7 +76,7 @@ function descargar_desde_internet {
             done
         
         # Creo un zip llamado imagenes_comprimidas con las imagenes, para ello utilizo el flag -r (Recursivamente)
-        echo "Comprimiendo imágenes"
+        echo "Comprimiendo imagenes"
 
         cd "archivos"
 
@@ -85,7 +85,7 @@ function descargar_desde_internet {
         archivo="imagenes_comprimidas.zip"
         
         # Creo la suma de verificación y la guardo en un archivo con el mismo nombre y extensión .md5 
-        echo "Creando suma de verificación"
+        echo "Creando suma de verificacion"
         checksum=$(md5sum "$archivo" | awk '{ print $1 }')
 
         echo "$checksum" > "imagenes_comprimidas.md5"
@@ -96,7 +96,7 @@ function descargar_desde_internet {
         rm -rf "$IMAGENES_PATH"
 
     else
-        echo "Cantidad de argumentos inválidas: $#. Se debe ingresar 1 solo argumento."
+        echo "Cantidad de argumentos invalidas: $#. Se debe ingresar 1 solo argumento."
         return 1
     fi
     

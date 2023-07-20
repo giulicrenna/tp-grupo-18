@@ -80,7 +80,7 @@ function comprimir {
 	then 
 		zip archivos_comprimidos Nombre_imagenes_validas.txt
 	else
-		echo "No se encontraron imágenes con nombres válidos."
+		echo "No se encontraron imagenes con nombres validos."
 	fi
 
 	#Quitamos los archivos ya comprimidos.
@@ -88,7 +88,7 @@ function comprimir {
 	rm Nombre_imagenes_validas.txt
 	rm Nombres_terminados_en_a.txt
 
-	echo "Comprimiendo imágenes" #Agregamos las imágenes al archivo comprimido
+	echo "Comprimiendo imagenes" #Agregamos las imágenes al archivo comprimido
 	zip -r archivos_comprimidos imagenes	 
 
 	cd ..

@@ -25,13 +25,13 @@ function descomprimir {
 
 		#Verificación de Checksum
 		CHECKSUM=`md5sum $1 | awk '{ print $1 }'`
-		[[ $CHECKSUM != $(cat  $2) ]] && echo "La suma de verificación no coincide, puede haber un problema con el archivo seleccionado. Intente generarlo nuevamente." && ERROR=1
+		[[ $CHECKSUM != $(cat  $2) ]] && echo "La suma de verificacion no coincide, puede haber un problema con el archivo seleccionado. Intente generarlo nuevamente." && ERROR=1
 		if [[ $ERROR == 1 ]]
 		then
 			return 1
 		else
 
-			echo "La validación de la suma de verificación ha sido exitosa."
+			echo "La validacion de la suma de verificacion ha sido exitosa."
 
 			echo "Descomprimiendo archivo"
 			unzip $1 -d "archivos/"
