@@ -22,12 +22,12 @@ de todos los integrantes y debe ejecutarse dentro de un contenedor.
 Para construír la imágen de docker correr el siguiente comando en la ruta del
 Dockerfile.
 ```
-sudo docker build -t tp .
+docker build -t tp .
 ```
 
 Para correr la imagen ejecutar donde **contenedor** es el nombre que llevará el container y **tp** es la imagen creada.
 ```
-sudo docker run -it tp
+docker run -it tp
 ```
 Cuando se ejecute el **contenedor**, podrá visualizar un menú (**menu.sh**) que contendrá las siguientes opciones:
   - 1- Generar imagen aleatoria
