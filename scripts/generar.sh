@@ -86,11 +86,18 @@ function descargar_desde_internet {
 
         echo "$checksum" > "imagenes_comprimidas.md5"
 
+        #En caso de que exista el directorio imagenes_convertidas, lo borra.
+        if [[ -d "imagenes/imagenes_convertidas" ]]
+        then
+            rmdir "imagenes/imagenes_convertidas"
+        fi   
+
         for archivo in $(ls imagenes)
         do
             rm "imagenes/$archivo"
         done
 
+        # read
         rm -rf "imagenes"
 
     else

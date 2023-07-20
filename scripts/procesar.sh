@@ -34,10 +34,10 @@ function procesar {
         if [ $EXTENSION == "jpg" ]
         then
             # Compruebo si el nombre es válido
-            if [ $(echo $NOMBRE | egrep $REGEX) == $NOMBRE ]
+            if [[ $(echo $NOMBRE | egrep $REGEX) == $NOMBRE ]]
             then
                 # Compruebo si el apellido es válido
-                if [ $(echo $APELLIDO | egrep $REGEX) == $APELLIDO ]
+                if [[ $(echo $APELLIDO | egrep $REGEX) == $APELLIDO ]]
                 then
                     echo "Procesando imagen: $imagen"
                     convert "imagenes/$imagen" -gravity center -resize 512x512+0+0 -extent 512x512 "./imagenes/imagenes_convertidas/$imagen"
