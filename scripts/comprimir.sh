@@ -79,17 +79,23 @@ function comprimir {
 	if [[ VALIDAS -ne 0 ]]
 	then 
 		zip archivos_comprimidos Nombre_imagenes_validas.txt
+		rm Nombre_imagenes_validas.txt
 	else
 		echo "No se encontraron imagenes con nombres validos."
 	fi
 
 	#Quitamos los archivos ya comprimidos.
 	rm Nombre_imagenes.txt 
-	rm Nombre_imagenes_validas.txt
 	rm Nombres_terminados_en_a.txt
 
 	echo "Comprimiendo imagenes" #Agregamos las imágenes al archivo comprimido
 	zip -r archivos_comprimidos imagenes	 
-
+	
+	#Borramos los archivos ya comprimidos
+	ARCHIVOS=$(ls --ignore='archivos_comprimidos.zip')
+	for ARCHIVO in $ARCHIVOS
+	do
+		rm -r $ARCHIVO
+	done
 	cd ..
 }

@@ -2,7 +2,7 @@
 
 URL="https://thispersondoesnotexist.com/"
 CSV_URL="https://raw.githubusercontent.com/adalessandro/EdP-2023-TP-Final/main/dict.csv"
-CSV_PATH="archivos/csv/dict.csv"
+CSV_PATH="csv/dict.csv"
 IMAGENES_PATH="archivos/imagenes"
 
 function descargar_desde_internet {
@@ -28,19 +28,19 @@ function descargar_desde_internet {
             echo "Descargando archivo"
             
             # Si no existe el directorio donde voy a guardar el CSV lo creo
-            if ! [[ -d "archivos/csv/" ]]
+            if ! [[ -d "csv/" ]]
             then
-                mkdir "archivos/csv/"
+                mkdir "csv/"
             fi
 
-            cd  "archivos/csv/"
+            cd  "csv/"
             
 
             wget $CSV_URL
             
             echo "Archivo descargado exitosamente"
             
-            cd ../..
+            cd ..
             
             sleep 2
             
