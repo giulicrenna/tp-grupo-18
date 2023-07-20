@@ -29,8 +29,6 @@ Para correr la imagen ejecutar donde **contenedor** es el nombre que llevará el
 ```
 sudo docker run -it -v ~/archivos:/tp/archivos tp
 ```
-Los archivos finales se encontrarán en el archivo **archivos_comprimidos.zip**, en la carpeta "archivos" de su carpeta personal. 
-## **Documentación:**
 Cuando se ejecute el **contenedor**, podrá visualizar un menú (**menu.sh**) que contendrá las siguientes opciones:
   - 1- Generar imagen aleatoria
   - 2- Descomprimir imagenes generadas
@@ -38,6 +36,15 @@ Cuando se ejecute el **contenedor**, podrá visualizar un menú (**menu.sh**) qu
   - 4- Comprimir imagenes
   - 0- Salir
 
+![image](https://github.com/giulicrenna/tp-grupo-18/assets/56234468/a52b2f52-ae11-4a49-b09b-e205b3b2f382)
+
+Se deben utilizar las opciones en el orden establecido (del 1 al 4, por último 0 para salir de la aplicación). En caso de no hacerlo, el programa mostrará un mensaje de error como el siguiente:
+
+![image](https://github.com/giulicrenna/tp-grupo-18/assets/56234468/5af08e41-8388-4568-98af-af410a50ad2e)
+
+Los archivos finales se encontrarán en el archivo **archivos_comprimidos.zip**, en la carpeta "archivos" de su carpeta personal. 
+## **Documentación:**
+Además de menu.sh, se han programado los siguientes scripts:
 1. **generar.sh**:  Genera imágenes de personas utilizando el servicio web `https://thispersondoesnotexist.com/`. Debe indicarle cuántas imágenes desea generar, luego el script le asignará a cada imagen un nombre de archivo al azar, en base a una lista de nombres de personas. Por último, el script comprimirá las imágenes y generará un archivo con su suma de verificación.
 2. **descomprimir.sh**: Toma el archivo comprimido y la suma de verificación generados en el paso anterior. Verificará que todos los datos sean correctos, y de ser así, procederá a descomprimir el archivo.
 3. **procesar.sh**:  Toma las imágenes descomprimidas en el paso anterior y cambia su resolución a 512x512, por medio de la utilidad ImageMagick. Solamente deben procesará aquellas imágenes que tengan nombres de personas válidos. 
