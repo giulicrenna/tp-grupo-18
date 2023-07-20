@@ -69,6 +69,7 @@ function comprimir {
             rm "archivos_comprimidos.zip"
     fi 
 
+	
 	# Comprimir los archivos generados en un archivo llamado Archivos_comprimidos.zip
 	zip archivos_comprimidos Nombre_imagenes.txt Nombres_terminados_en_a.txt
 
@@ -76,6 +77,14 @@ function comprimir {
 	if [[ VALIDAS -ne 0 ]]
 	then 
 		zip archivos_comprimidos Nombre_imagenes_validas.txt
+	else
+		echo "No se encontraron imágenes con nombres válidos."
+	fi
+
+	#En caso de que no encuentre imagenes válidas, no intenta comprimir el archivo. 
+	if [[ VALIDAS -ne 0 ]]
+	then 
+		zip archivos_comprimidos Nombre_imagenes_validas
 	else
 		echo "No se encontraron imágenes con nombres válidos."
 	fi
