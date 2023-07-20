@@ -27,7 +27,7 @@ sudo docker build -t tp .
 
 Para correr la imagen ejecutar donde **contenedor** es el nombre que llevará el container y **tp** es la imagen creada.
 ```
-sudo docker run -it -v ~/archivos:/tp/archivos tp
+sudo docker run -it tp
 ```
 Cuando se ejecute el **contenedor**, podrá visualizar un menú (**menu.sh**) que contendrá las siguientes opciones:
   - 1- Generar imagen aleatoria

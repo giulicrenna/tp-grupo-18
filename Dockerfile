@@ -18,6 +18,8 @@ COPY menu.sh /tp
 # tp como directorio de trabajo
 WORKDIR /tp
 
+VOLUME ["~/archivos:/tp/archivos"]
+
 # Dar permisos de ejecución al script
 RUN chmod +x menu.sh
 
