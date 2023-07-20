@@ -19,6 +19,10 @@ Todo el trabajo debe ser realizado bajo control de versiones, con participación
 de todos los integrantes y debe ejecutarse dentro de un contenedor.
 
 ## **Modo de uso**
+Es necesario que se agregue al usuario al grupo docker.
+```
+sudo usermod -aG docker <usuario>
+```
 Para construír la imágen de docker correr el siguiente comando en la ruta del
 Dockerfile.
 ```
