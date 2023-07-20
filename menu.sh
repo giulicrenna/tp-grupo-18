@@ -47,7 +47,7 @@ case $OPCION in
 
         if [[ $? -ne 0 ]]
             then 
-                echo "Se han encontrado errores, verifique los mensajes e inténtelo de nuevo. Presione cualquier tecla para continuar..."
+                echo "Se han encontrado errores, verifique los mensajes e intentelo de nuevo. Presione cualquier tecla para continuar..."
             else
             echo "Imagenes descargadas y comprimidas. Presione cualquier tecla para continuar..."
         fi
@@ -64,7 +64,7 @@ case $OPCION in
         descomprimir "$ARCH.zip" $ARCH.md5
         if [[ $? -ne 0 ]]
             then 
-                echo "Se han encontrado errores, verifique los mensajes e inténtelo de nuevo. Presione cualquier tecla para continuar..."
+                echo "Se han encontrado errores, verifique los mensajes e intentelo de nuevo. Presione cualquier tecla para continuar..."
             else
             echo "Archivo descomprimido, puede encontrar las imagenes en la carpeta 'imagenes'."
         fi
@@ -78,7 +78,7 @@ case $OPCION in
         procesar
         if [[ $? -ne 0 ]]
             then 
-                echo "Ha ocurrido un error, verifique los mensajes e inténtelo de nuevo. Presione cualquier tecla para continuar..."
+                echo "Ha ocurrido un error, verifique los mensajes e intentelo de nuevo. Presione cualquier tecla para continuar..."
             else
             echo "Imagenes procesadas."
             echo "Las imagenes se guardan el el directorio imagenes/imagenes_convertidas. Presione cualquier tecla para continuar..."
@@ -92,7 +92,7 @@ case $OPCION in
         comprimir
         if [[ $? -ne 0 ]]
             then 
-                echo "Ha ocurrido un error, verifique los mensajes e inténtelo de nuevo. Presione cualquier tecla para continuar..."
+                echo "Ha ocurrido un error, verifique los mensajes e intentelo de nuevo. Presione cualquier tecla para continuar..."
             else
             echo "El archivo final fue creado con exito."
         fi
