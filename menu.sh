@@ -1,11 +1,14 @@
 #!/bin/bash
 
+#Cargamos los scripts a utilizar
 source "scripts/generar.sh"
 source "scripts/procesar.sh"
 source "scripts/descomprimir.sh"
 source "scripts/comprimir.sh"
 
 clear
+
+#Presentamos las opciones al usuario
 printf "Ingrese una opcion:\n"
 printf "\t1- Generar imagen aleatoria\n"
 printf "\t2- Descomprimir imagenes generadas\n"
@@ -16,13 +19,14 @@ printf "Opcion (Solo numeros): "
 
 read OPCION
 
-CARPETA_DESTINO="archivos/"
-
 if ! [[ $OPCION =~ ^[0-9]+$ ]]
 then
     echo "La opcion debe ser un numero"
     exit 1
 fi
+
+#Creamos la carpeta de archivos
+CARPETA_DESTINO="archivos/"
 
 if ! [[ -f $CARPETA_DESTINO  ]]
 	then
@@ -64,7 +68,6 @@ case $OPCION in
             else
             echo "Archivo descomprimido, puede encontrar las imagenes en la carpeta 'imagenes'."
         fi
-        #clear
         
         read
         ;;
@@ -93,7 +96,6 @@ case $OPCION in
             else
             echo "El archivo final fue creado con exito."
         fi
-        #clear
         
         read
         ;;
