@@ -16,12 +16,17 @@ printf "Opcion (Solo numeros): "
 
 read OPCION
 
-
+CARPETA_DESTINO="archivos/"
 
 if ! [[ $OPCION =~ ^[0-9]+$ ]]
 then
     echo "La opcion debe ser un numero"
     exit 1
+fi
+
+if ! [[ -f $CARPETA_DESTINO  ]]
+	then
+		mkdir $CARPETA_DESTINO
 fi
 
 while ! [[ $OPCION == 0 ]];
@@ -35,13 +40,13 @@ case $OPCION in
         read CANT
 
         descargar_desde_internet $CANT
+
         if [[ $? -ne 0 ]]
             then 
                 echo "Se han encontrado errores, verifique los mensajes e inténtelo de nuevo. Presione cualquier tecla para continuar..."
             else
             echo "Imagenes descargadas y comprimidas. Presione cualquier tecla para continuar..."
         fi
-        #clear
         
         read
         ;;
@@ -50,9 +55,9 @@ case $OPCION in
         clear
         echo "Descargar imagenes..."
         
-        ARCH="imagenes_comprimidas"
+        ARCH="archivos/imagenes_comprimidas"
 
-        descomprimir $ARCH.zip $ARCH.md5
+        descomprimir "$ARCH.zip" $ARCH.md5
         if [[ $? -ne 0 ]]
             then 
                 echo "Se han encontrado errores, verifique los mensajes e inténtelo de nuevo. Presione cualquier tecla para continuar..."

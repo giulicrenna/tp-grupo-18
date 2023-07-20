@@ -1,16 +1,13 @@
 #!/bin/bash
 
 
-PATH_IMAGENES="imagenes/"
-COMANDO="convert"
-ARGS="-gravity center -resize 512x512+0+0 -extent 512x512 salida.jpg"
+PATH_IMAGENES="archivos/imagenes/"
 
 # Con esta expresión regular puedo determinar si la primera letra de la palabra es mayuscula y las demás minúscula
 REGEX="[A-Z][a-z]{1,}"
 
 
 function procesar {
-    PATH_IMAGENES="imagenes/"
     if ! [[ -e $PATH_IMAGENES ]]
     then
         read -p "No se encontraron imagenes. Quiza deba descomprimirlas primero."
@@ -21,7 +18,7 @@ function procesar {
     fi
 
     # Itero sobre las imágenes disponibles en el directorio imagenes
-    for imagen in $(ls ./imagenes)
+    for imagen in $(ls ./archivos/imagenes)
     do
         # Extraigo la extensión del archivo
         EXTENSION=$(echo "$imagen" | cut -d '.' -f 2)
@@ -40,7 +37,7 @@ function procesar {
                 if [[ $(echo $APELLIDO | egrep $REGEX) == $APELLIDO ]]
                 then
                     echo "Procesando imagen: $imagen"
-                    convert "imagenes/$imagen" -gravity center -resize 512x512+0+0 -extent 512x512 "./imagenes/imagenes_convertidas/$imagen"
+                    convert "archivos/imagenes/$imagen" -gravity center -resize 512x512+0+0 -extent 512x512 "archivos/imagenes/imagenes_convertidas/$imagen"
                 fi
             fi
         fi

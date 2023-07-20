@@ -4,8 +4,9 @@
 # scripts anteriores y descomprimirlo (definir un nombre comun para ambos).
 # Si ocurre algun error debera informar al usuario.
 
-function descomprimir {
-	
+ARCHIVOS="archivos"
+
+function descomprimir {	
 	#Verificación de argumentos
 	EXT_VALIDA="\.[zip]*[rar]*[gzip]*[bzip2]*[xz]*$"
 	
@@ -33,7 +34,7 @@ function descomprimir {
 			echo "La validación de la suma de verificación ha sido exitosa."
 
 			echo "Descomprimiendo archivo"
-			unzip $1
+			unzip $1 -d "archivos/"
 			return 0
 		fi
 	fi

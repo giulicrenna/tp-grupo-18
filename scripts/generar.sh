@@ -2,9 +2,8 @@
 
 URL="https://thispersondoesnotexist.com/"
 CSV_URL="https://raw.githubusercontent.com/adalessandro/EdP-2023-TP-Final/main/dict.csv"
-CSV_PATH="csv/dict.csv"
-IMAGENES_PATH="imagenes/"
-
+CSV_PATH="archivos/csv/dict.csv"
+IMAGENES_PATH="archivos/imagenes"
 
 function descargar_desde_internet {
     # Compruebo con un regex si es válido el argumento
@@ -14,26 +13,34 @@ function descargar_desde_internet {
         return 1
     fi
 
+    # Si ya existe un archivo comprimido entonces lo elimino
+    if [ -f "archivos/imagenes_comprimidas.zip" ]
+    then
+        rm archivos/imagenes_comprimidas.zip
+    fi
+
     # Verifico que se haya pasado un solo argumento 
     if [[ $# -eq 1 ]]; then
-
         # En el caso de que el archivo personas.csv no exista lo descargo
         if ! [[ -f $CSV_PATH ]]
         then 
-            echo "El archivo personas.csv no existe. \nDescargando archivo"
+            echo "El archivo dict.csv no existe."
+            echo "Descargando archivo"
             
             # Si no existe el directorio donde voy a guardar el CSV lo creo
-            if ! [ -d "csv" ]; then
-                mkdir csv
+            if ! [[ -d "archivos/csv/" ]]
+            then
+                mkdir "archivos/csv/"
             fi
 
-            cd csv
+            cd  "archivos/csv/"
             
+
             wget $CSV_URL
             
             echo "Archivo descargado exitosamente"
             
-            cd ..
+            cd ../..
             
             sleep 2
             
@@ -44,8 +51,8 @@ function descargar_desde_internet {
         fi
 
         # Si no existe el directorio imágenes lo creo
-        if ! [ -d "imagenes" ]; then
-            mkdir imagenes
+        if ! [ -d $IMAGENES_PATH ]; then
+            mkdir $IMAGENES_PATH
         fi
 
         # Itero en función de la cantidad de personas que el usuario quiere que genere
@@ -64,19 +71,17 @@ function descargar_desde_internet {
                 # Transformo el " " en un "_" 
                 NOMBRE_IMAGEN="$(echo "${NOMBRE} ${APELLIDO}" | tr ' ' '_').jpg"
 
-                wget -O "imagenes/$NOMBRE_IMAGEN" $URL 
+                wget -O "$IMAGENES_PATH/$NOMBRE_IMAGEN" $URL 
 
                 sleep 1
             done
-
-        # Si ya existe un archivo comprimido entonces lo elimino
-        if [[ -f "imagenes_comprimidas.zip" ]]; then
-            rm imagenes_comprimidas.zip
-        fi
         
         # Creo un zip llamado imagenes_comprimidas con las imagenes, para ello utilizo el flag -r (Recursivamente)
         echo "Comprimiendo imágenes"
-        zip -r imagenes_comprimidas.zip imagenes
+
+        cd "archivos"
+
+        zip -r "imagenes_comprimidas.zip" "imagenes/"
         
         archivo="imagenes_comprimidas.zip"
         
@@ -86,19 +91,10 @@ function descargar_desde_internet {
 
         echo "$checksum" > "imagenes_comprimidas.md5"
 
-        #En caso de que exista el directorio imagenes_convertidas, lo borra.
-        if [[ -d "imagenes/imagenes_convertidas" ]]
-        then
-            rmdir "imagenes/imagenes_convertidas"
-        fi   
-
-        for archivo in $(ls imagenes)
-        do
-            rm "imagenes/$archivo"
-        done
+        cd ..
 
         # read
-        rm -rf "imagenes"
+        rm -rf "$IMAGENES_PATH"
 
     else
         echo "Cantidad de argumentos inválidas: $#. Se debe ingresar 1 solo argumento."
