@@ -53,14 +53,13 @@ function descargar_desde_internet {
             do
                 # Tomo una fila aleatoria del conjunto de datos
                 LINEA_ALEATORIA=$(shuf -n "1" "$CSV_PATH")
-            
                 # Corto el CSV así obtengo el primer elemento de una fila aleatoria
                 NOMBRE_IMAGEN=$(echo "$LINEA_ALEATORIA" | cut -d ',' -f 1)
 
                 # Tomo el nombre y apellido del string 
                 NOMBRE="$(echo "${NOMBRE_IMAGEN}" | cut -d " " -f 1)"
                 APELLIDO="$(echo "${NOMBRE_IMAGEN}" | cut -d " " -f 2)"
-
+                
                 # Transformo el " " en un "_" 
                 NOMBRE_IMAGEN="$(echo "${NOMBRE} ${APELLIDO}" | tr ' ' '_').jpg"
 
